@@ -1,0 +1,20 @@
+html, body {
+  background-color: #f7f7f7;
+  font-family: 'Oswald', var(--bs-font-sans-serif);
+  font-size: large;
+}
+
+h1, h2, h3 {
+  color: orange;
+  font-family: 'Playfair Display', sans-serif;
+}
+
+.main-content{
+  margin-top: 5em;
+}
+
+.tab-content {
+  background-color: #fff;
+  border-radius: 4px;
+  padding-left: 1em;
+}
