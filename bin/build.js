@@ -6,7 +6,8 @@ const path = require("path");
 // Helpers
 const { getTeaser , parseYAML } = require('../helpers');
 
-const buildPath = path.join(__dirname, '../dist' );
+// GH pages uses the docs directory.
+const buildPath = path.join(__dirname, '../docs');
 
 // Set up the build directories
 if (fs.existsSync(buildPath)) {
@@ -61,11 +62,14 @@ fs.readFile(path.join(__dirname, '../views/pages/index.ejs') , 'utf8', async fun
     console.log(err);
     return false;
   }
+  const subPath = 'guitar-tabs';
   const fm = await getTeaser();
   let template = await compile(data, {fm});
   // Add .html to each link in document.
   // @todo Make this replace more controlled. It will replace all links.
-  template = template.replace(/<a href="(.*)?"/ig, '<a href=$1.html');
+  template = template.replace(/<a href="(.*)?"/ig, `<a href="$1.html"`);
+  // Replace all relative paths with the subdir path.
+  template = template.replace(/href="([^https].*)?"/ig, `href="/${subPath}$1"`);
   writeFile('index', template);
    // Build the Tabs.
   fs.readFile(path.join(__dirname, '../views/templates/tab.ejs'), 'utf-8', async function(err, data) {
@@ -75,8 +79,11 @@ fs.readFile(path.join(__dirname, '../views/pages/index.ejs') , 'utf8', async fun
     fm.forEach( async tab => {
       const name = tab.file_name.substring(0, tab.file_name.length - 4);
       const content = await parseYAML(name);
-      const tabMarkup = await compile(data, {content});
+      let tabMarkup = await compile(data, {content});
+      // Replace all relative paths with the subdir path.
+      tabMarkup = tabMarkup.replace(/href="([^https].*)?"/ig, `href="/${subPath}$1"`);
       writeFile(`tabs/${name}`, tabMarkup);
+      console.log("Built new Page: ", name);
     });
   });
 });

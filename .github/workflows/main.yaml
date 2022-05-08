@@ -1,0 +1,31 @@
+name: Build and Deploy
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{secrets.PAT}}
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+      - name: Install Dev Dependencies
+        run: npm install --only=dev
+      - name: Build
+        run: npm run build
+      - name: Commit
+        run: |
+          cd docs
+          git init
+          git remote add origin https://github.com/${{github.repository}}
+          git add -A
+          git commit -m "deploy"
+      - name: Deploy
+        run: git push -f origin master:gh-pages
