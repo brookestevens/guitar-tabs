@@ -1,0 +1,28 @@
+<%- include('../templates/header'); %>
+<div class="alert alert-info" role="alert">
+  This is a collection of songs that I've attempted to tab out, however most are still a work in progress. This site is
+  mainly just for fun, and serves as a reference for the songs I've attempted to learn by ear.
+</div>
+<h1 class="mt-4"> Tabs </h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Artist</th>
+      <th scope="col">Song</th>
+      <th scope="col">Lead</th>
+      <th scope="col">Rythym</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% fm.forEach( function(i){ %>
+      <tr>
+        <td> <%= i.artist %> </td>
+        <td> <a href="/tabs/<%= i.file_name.substring(0, i.file_name.length - 4 ) %>"> <%= i.title %> </a> </td>
+        <td> <%= i.lead ? 'Yes' : 'No' %> </td>
+        <td> <%= i.rythym ? 'Yes' : 'No' %> </td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>
+<%- include('../templates/footer'); %>
+
