@@ -26,7 +26,7 @@ jobs:
           git init
           git config --global user.email "${{ github.event.pusher.email }}"
           git config --global user.name "${{ github.event.pusher.name }}"
-          git remote add origin https://github.com/${{github.repository}}
+          git remote add origin https://github.com/${{github.repository}}.git
           git add -A
           git commit -m "deploy"
       - name: Deploy
