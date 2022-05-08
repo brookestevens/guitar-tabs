@@ -24,6 +24,8 @@ jobs:
         run: |
           cd docs
           git init
+          git config --global user.email "${{ github.event.pusher.name }}"
+          git config --global user.name "${{ github.event.pusher.email }}"
           git remote add origin https://github.com/${{github.repository}}
           git add -A
           git commit -m "deploy"
