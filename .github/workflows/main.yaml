@@ -16,8 +16,8 @@ jobs:
           node-version: 14
           cache: 'npm'
           cache-dependency-path: package-lock.json
-      - name: Install Dev Dependencies
-        run: npm install --only=dev
+      - name: Install Dependencies
+        run: npm install --only=prod
       - name: Build
         run: npm run build
       - name: Commit
