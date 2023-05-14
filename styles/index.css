@@ -13,6 +13,10 @@ h1, h2, h3 {
   margin-top: 5em;
 }
 
+.font-weight-light {
+  font-weight: 100;
+}
+
 .tab-content {
   background-color: #fff;
   border-radius: 4px;
