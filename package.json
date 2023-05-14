@@ -4,8 +4,8 @@
   "description": "A site for guitar tabs",
   "main": "index.js",
   "engines": {
-    "node": "14.0.0",
-    "npm": "6.14.0"
+    "node": "15.14.0",
+    "npm": "8.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "express": "^4.17.1",
+    "nodemon": "^2.0.22",
     "prompt": "^1.1.0"
   }
 }

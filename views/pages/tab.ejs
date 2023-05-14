@@ -1,8 +1,9 @@
-<%- include('./header'); %>
+<%- include('../templates/header'); %>
+<!-- Breadcrumbs -->
+<a class="fs-6 text-decoration-none" href="/">All Tabs</a>
 <h1 class="mt-4"> <%= content.artist %> - <%= content.title %> </h1>
-<div>
-  <p><strong> Key: </strong> <%= content.key %> </p>
-  <p><strong> Tuning: </strong> <%= content.tuning %> </p>
+<div class="mb-4 font-weight-light">
+  <strong> BPM: </strong> <%= content.BPM %> | <strong> Tuning: </strong> <%= content.tuning %>
 </div>
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -37,5 +38,5 @@
   </div>
 </div>
 
-<%- include('./footer'); %>
+<%- include('../templates/footer'); %>
 

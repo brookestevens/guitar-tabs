@@ -34,7 +34,7 @@ app.get('/:fileName', async (req, res) => {
 app.get('/tabs/:fileName', async (req, res) => {
   try{
     const content = await parseYAML(req.params.fileName);
-    res.render( path.join(__dirname, `views/templates/tab`), { content });
+    res.render( path.join(__dirname, `views/pages/tab`), { content });
   }
   catch(e){
     console.error(e);

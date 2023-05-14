@@ -72,7 +72,7 @@ fs.readFile(path.join(__dirname, '../views/pages/index.ejs') , 'utf8', async fun
   template = template.replace(/href="([^https].*)?"/ig, `href="/${subPath}$1"`);
   writeFile('index', template);
    // Build the Tabs.
-  fs.readFile(path.join(__dirname, '../views/templates/tab.ejs'), 'utf-8', async function(err, data) {
+  fs.readFile(path.join(__dirname, '../views/pages/tab.ejs'), 'utf-8', async function(err, data) {
     if(err){
       console.error(err);
     }
